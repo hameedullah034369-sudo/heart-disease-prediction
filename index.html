@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Heart Disease Prediction</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>❤️ Heart Disease Risk Predictor</h1>
+
+    <form action="/predict" method="post">
+        <div class="grid">
+            <div class="field">
+                <label>Age</label>
+                <input type="number" name="age" required>
+            </div>
+
+            <div class="field">
+                <label>Sex</label>
+                <select name="sex" required>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Chest Pain Type (cp)</label>
+                <select name="cp" required>
+                    <option value="0">Type 0</option>
+                    <option value="1">Type 1</option>
+                    <option value="2">Type 2</option>
+                    <option value="3">Type 3</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Resting Blood Pressure (trestbps)</label>
+                <input type="number" name="trestbps" required>
+            </div>
+
+            <div class="field">
+                <label>Cholesterol (chol)</label>
+                <input type="number" name="chol" required>
+            </div>
+
+            <div class="field">
+                <label>Fasting Blood Sugar > 120 mg/dl (fbs)</label>
+                <select name="fbs" required>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Resting ECG (restecg)</label>
+                <select name="restecg" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Max Heart Rate (thalach)</label>
+                <input type="number" name="thalach" required>
+            </div>
+
+            <div class="field">
+                <label>Exercise Induced Angina (exang)</label>
+                <select name="exang" required>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>ST Depression (oldpeak)</label>
+                <input type="number" step="0.1" name="oldpeak" required>
+            </div>
+
+            <div class="field">
+                <label>Slope</label>
+                <select name="slope" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Major Vessels (ca)</label>
+                <select name="ca" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Thalassemia (thal)</label>
+                <select name="thal" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h2>{{ result }}</h2>
+        {% if confidence %}
+        <p>Confidence: {{ confidence }}%</p>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>
